@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:foaf="http://xmlns.com/foaf/0.1/">
+  
+  <head>
+    
+    
+      
+        <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=UTF-8" />
+      
+      
+      <title>
+        Cookbook for R » 
+        Legends (ggplot2)
+      </title>
+      
+      
+        
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" media="screen, projection" />
+        <link rel="stylesheet" type="text/css" href="../media/css/mystyle.css" media="screen, projection" />
+      
+      
+      
+      
+      
+        
+          <!-- Google Analytics -->
+          <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-28886507-1']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+            })();
+          </script>
+        
+      
+    
+  </head>
+  
+  <body >
+    
+      
+      <div id="header">
+        
+          <div id="wiki_name">
+          
+            Cookbook for R
+          
+          </div>
+           
+            
+  
+    <ol id="breadcrumbs">
+      
+        <li class="crumb-0 not-last">
+          
+            <a href="../index.html">index</a>
+          
+        </li>
+      
+        <li class="crumb-1 not-last">
+          
+            <a href="../Graphs.html">Graphs</a>
+          
+        </li>
+      
+        <li class="crumb-2 last">
+          
+            Legends (ggplot2)
+          
+        </li>
+      
+    </ol> <!-- ol#breadcrumbs -->
+  
+
+          
+        
+      </div>
+      
+      <div id="content">
+        
+        
+        
+        <h1 id="legends-ggplot2">Legends (ggplot2)</h1>
+<div class="toc"><span class="toctitle">Table of contents</span><ul>
+<li><a href="Legends&#32;(ggplot2).html#legends-ggplot2">Legends (ggplot2)</a><ul>
+<li><a href="Legends&#32;(ggplot2).html#problem">Problem</a></li>
+<li><a href="Legends&#32;(ggplot2).html#solution">Solution</a><ul>
+<li><a href="Legends&#32;(ggplot2).html#removing-the-legend">Removing the legend</a></li>
+<li><a href="Legends&#32;(ggplot2).html#changing-the-order-of-items-in-the-legend">Changing the order of items in the legend</a></li>
+<li><a href="Legends&#32;(ggplot2).html#hiding-the-legend-title">Hiding the legend title</a></li>
+<li><a href="Legends&#32;(ggplot2).html#modifying-the-text-of-legend-titles-and-labels">Modifying the text of legend titles and labels</a><ul>
+<li><a href="Legends&#32;(ggplot2).html#changing-the-factor-in-the-data-frame">Changing the factor in the data frame</a></li>
+<li><a href="Legends&#32;(ggplot2).html#using-scales">Using scales</a><ul>
+<li><a href="Legends&#32;(ggplot2).html#with-color-fills">With color fills</a></li>
+<li><a href="Legends&#32;(ggplot2).html#with-lines-and-points">With lines and points</a></li>
+<li><a href="Legends&#32;(ggplot2).html#kinds-of-scales">Kinds of scales</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="Legends&#32;(ggplot2).html#modifying-the-appearance-of-the-legend-title-and-labels">Modifying the appearance of the legend title and labels</a></li>
+<li><a href="Legends&#32;(ggplot2).html#modifying-the-legend-box">Modifying the legend box</a></li>
+<li><a href="Legends&#32;(ggplot2).html#changing-the-position-of-the-legend">Changing the position of the legend</a></li>
+<li><a href="Legends&#32;(ggplot2).html#hiding-slashes-in-the-legend">Hiding slashes in the legend</a></li>
+<li><a href="Legends&#32;(ggplot2).html#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="problem">Problem</h2>
+<p>You want to modify the legend of a graph made with ggplot2.</p>
+<h2 id="solution">Solution</h2>
+<p>Start with an example graph with the default options: </p>
+<div class="codehilite"><pre>library<span class="p">(</span>ggplot2<span class="p">)</span>
+bp <span class="o">&lt;-</span> ggplot<span class="p">(</span>data<span class="o">=</span>PlantGrowth<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>group<span class="p">,</span> y<span class="o">=</span>weight<span class="p">,</span> fill<span class="o">=</span>group<span class="p">))</span> <span class="o">+</span> geom_boxplot<span class="p">()</span>
+bp
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp.png" /></p>
+<h3 id="removing-the-legend">Removing the legend</h3>
+<div class="codehilite"><pre>bp <span class="o">+</span> opts<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;none&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-nolegend.png" /></p>
+<h3 id="changing-the-order-of-items-in-the-legend">Changing the order of items in the legend</h3>
+<p>This changes the order of items to trt1, ctrl, trt2:</p>
+<div class="codehilite"><pre>bp <span class="o">+</span> scale_fill_hue<span class="p">(</span>breaks<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;trt1&quot;</span><span class="p">,</span><span class="s">&quot;ctrl&quot;</span><span class="p">,</span><span class="s">&quot;trt2&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-legendorder.png" /></p>
+<p>Depending on how the colors are specified, you may have to use a different scale, such as
+<code>scale_fill_manual</code>, <code>scale_colour_hue</code>, <code>scale_colour_manual</code>, <code>scale_shape_discrete</code>, <code>scale_linetype_discrete</code>, and so on.</p>
+<h3 id="hiding-the-legend-title">Hiding the legend title</h3>
+<p>This will hide the legend title:</p>
+<div class="codehilite"><pre>bp <span class="o">+</span> opts<span class="p">(</span>legend.title<span class="o">=</span>theme_blank<span class="p">())</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-nolegendtitle.png" /></p>
+<h3 id="modifying-the-text-of-legend-titles-and-labels">Modifying the text of legend titles and labels</h3>
+<p>There are two ways of changing the legend title and labels. The first way is to change data frame so that the factor has the desired form. The second way is to specify a <code>scale</code> to ggplot.</p>
+<h4 id="changing-the-factor-in-the-data-frame">Changing the factor in the data frame</h4>
+<div class="codehilite"><pre>pg <span class="o">&lt;-</span> PlantGrowth    <span class="c1"># Copy data into new data frame</span>
+<span class="c1"># Rename the column and the values in the factor</span>
+names<span class="p">(</span>pg<span class="p">)[</span>names<span class="p">(</span>pg<span class="p">)</span><span class="o">==</span><span class="s">&quot;group&quot;</span><span class="p">]</span>  <span class="o">&lt;-</span> <span class="s">&quot;Experimental Condition&quot;</span>
+levels<span class="p">(</span>pg<span class="p">)[</span>levels<span class="p">(</span>pg<span class="p">)</span><span class="o">==</span><span class="s">&quot;ctrl&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Control&quot;</span>
+levels<span class="p">(</span>pg<span class="p">)[</span>levels<span class="p">(</span>pg<span class="p">)</span><span class="o">==</span><span class="s">&quot;trt1&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Treatment 1&quot;</span>
+levels<span class="p">(</span>pg<span class="p">)[</span>levels<span class="p">(</span>pg<span class="p">)</span><span class="o">==</span><span class="s">&quot;trt2&quot;</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;Treatment 2&quot;</span>
+
+<span class="c1"># The end product</span>
+pg
+<span class="c1"># weight Experimental Condition</span>
+<span class="c1">#   4.17                   ctrl</span>
+<span class="c1">#   5.58                   ctrl</span>
+<span class="c1">#    ...</span>
+<span class="c1">#   5.80                   trt2</span>
+<span class="c1">#   5.26                   trt2</span>
+
+<span class="c1"># Make the plot </span>
+ggplot<span class="p">(</span>data<span class="o">=</span>pg<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span><span class="sb">`Experimental Condition`, y=weight, fill=`Experimental Condition`</span><span class="p">))</span> <span class="o">+</span> geom_boxplot<span class="p">()</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-title-newdf.png" /></p>
+<p>The legend title "Experimental Condtion" is long and it might look better if it were broken into two lines, but this doesn't work very well with this method, since you would have to put a newline character in the name of the column. The other method, with scales, is generally a better way to do this.</p>
+<p>Also note the use of backticks instead of quotes. They are necessary because of the spaces in the variable name.</p>
+<h4 id="using-scales">Using scales</h4>
+<p>The other method is to use a <code>scale</code> with ggplot.</p>
+<h5 id="with-color-fills">With color fills</h5>
+<p>Because <strong>group</strong>, the variable in the legend, is mapped to the color <code>fill</code>, it is necessary to use <code>scale_fill_xxx</code>, where <code>xxx</code> is a method of mapping each factor level of <strong>group</strong> to different colors. The default is to use a different hue on the color wheel for each factor level, but it is also possible to manually specify the colors for each level.</p>
+<div class="codehilite"><pre>bp <span class="o">+</span> scale_fill_hue<span class="p">(</span>name<span class="o">=</span><span class="s">&quot;Experimental\nCondition&quot;</span><span class="p">)</span>
+
+bp <span class="o">+</span> scale_fill_hue<span class="p">(</span>name<span class="o">=</span><span class="s">&quot;Experimental\nCondition&quot;</span><span class="p">,</span>
+                    breaks<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;ctrl&quot;</span><span class="p">,</span> <span class="s">&quot;trt1&quot;</span><span class="p">,</span> <span class="s">&quot;trt2&quot;</span><span class="p">),</span>
+                    labels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Control&quot;</span><span class="p">,</span> <span class="s">&quot;Treatment 1&quot;</span><span class="p">,</span> <span class="s">&quot;Treatment 2&quot;</span><span class="p">))</span>
+
+<span class="c1"># Using a manual scale instead of hue</span>
+bp <span class="o">+</span> scale_fill_manual<span class="p">(</span>values<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;#999999&quot;</span><span class="p">,</span> <span class="s">&quot;#E69F00&quot;</span><span class="p">,</span> <span class="s">&quot;#56B4E9&quot;</span><span class="p">),</span> 
+                       name<span class="o">=</span><span class="s">&quot;Experimental\nCondition&quot;</span><span class="p">,</span>
+                       breaks<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;ctrl&quot;</span><span class="p">,</span> <span class="s">&quot;trt1&quot;</span><span class="p">,</span> <span class="s">&quot;trt2&quot;</span><span class="p">),</span>
+                       labels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Control&quot;</span><span class="p">,</span> <span class="s">&quot;Treatment 1&quot;</span><span class="p">,</span> <span class="s">&quot;Treatment 2&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-title.png" />
+<img alt="" src="Legends&#32;(ggplot2)/bp-title-labels.png" />
+<img alt="" src="Legends&#32;(ggplot2)/bp-title-labels-fillmanual.png" /></p>
+<p>(Note that the x-axis labels did not change. See <a href="http://test.stdout.org/Graphs/Axes&#32;(ggplot2)">../Axes (ggplot2)</a> for more information.)</p>
+<h5 id="with-lines-and-points">With lines and points</h5>
+<p>If you use a line graph, you will probably need to use <code>scale_colour_xxx</code> and/or <code>scale_shape_xxx</code> instead of <code>scale_fill_xxx</code>. <strong><em>colour</em></strong> maps to the colors of lines and points, while <strong><em>fill</em></strong> maps to the color of area fills. <strong><em>shape</em></strong> maps to the shapes of points.</p>
+<p>We will use a different data set for the line graphs here because the PlantGrowth data set does not work well with a line graph.</p>
+<div class="codehilite"><pre><span class="c1"># A different data set</span>
+df1 <span class="o">&lt;-</span> data.frame<span class="p">(</span>sex        <span class="o">=</span> factor<span class="p">(</span>c<span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="s">&quot;Male&quot;</span><span class="p">)),</span>
+                  time       <span class="o">=</span> factor<span class="p">(</span>c<span class="p">(</span><span class="s">&quot;Lunch&quot;</span><span class="p">,</span><span class="s">&quot;Dinner&quot;</span><span class="p">,</span><span class="s">&quot;Lunch&quot;</span><span class="p">,</span><span class="s">&quot;Dinner&quot;</span><span class="p">),</span> levels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Lunch&quot;</span><span class="p">,</span><span class="s">&quot;Dinner&quot;</span><span class="p">)),</span>
+                  total_bill <span class="o">=</span> c<span class="p">(</span><span class="m">13.53</span><span class="p">,</span> <span class="m">16.81</span><span class="p">,</span> <span class="m">16.24</span><span class="p">,</span> <span class="m">17.42</span><span class="p">))</span>
+
+<span class="c1"># A basic graph</span>
+lp <span class="o">&lt;-</span> ggplot<span class="p">(</span>data<span class="o">=</span>df1<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>time<span class="p">,</span> y<span class="o">=</span>total_bill<span class="p">,</span> group<span class="o">=</span>sex<span class="p">,</span> shape<span class="o">=</span>sex<span class="p">))</span> <span class="o">+</span> geom_line<span class="p">()</span> <span class="o">+</span> geom_point<span class="p">()</span>
+lp
+
+<span class="c1"># Change the legend</span>
+lp <span class="o">+</span> scale_shape_discrete<span class="p">(</span>name  <span class="o">=</span><span class="s">&quot;Payer&quot;</span><span class="p">,</span>
+                          breaks<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+                          labels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Woman&quot;</span><span class="p">,</span> <span class="s">&quot;Man&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/lp.png" />
+<img alt="" src="Legends&#32;(ggplot2)/lp-shape.png" /></p>
+<p>If you use both <code>colour</code> and <code>shape</code>, they both need to be given scale specifications. Otherwise there will be two two separate legends.</p>
+<div class="codehilite"><pre><span class="c1"># Specify colour and shape</span>
+lp1 <span class="o">&lt;-</span> ggplot<span class="p">(</span>data<span class="o">=</span>df1<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>time<span class="p">,</span> y<span class="o">=</span>total_bill<span class="p">,</span> group<span class="o">=</span>sex<span class="p">,</span> shape<span class="o">=</span>sex<span class="p">,</span> colour<span class="o">=</span>sex<span class="p">))</span> <span class="o">+</span> geom_line<span class="p">()</span> <span class="o">+</span> geom_point<span class="p">()</span>
+lp1
+
+<span class="c1"># Here&#39;s what happens if you just specify colour</span>
+lp1 <span class="o">+</span> scale_colour_hue<span class="p">(</span>name  <span class="o">=</span><span class="s">&quot;Payer&quot;</span><span class="p">,</span>
+                       breaks<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+                       labels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Woman&quot;</span><span class="p">,</span> <span class="s">&quot;Man&quot;</span><span class="p">))</span>
+
+<span class="c1"># Specify both colour and shape</span>
+lp1 <span class="o">+</span> scale_colour_hue<span class="p">(</span>name  <span class="o">=</span><span class="s">&quot;Payer&quot;</span><span class="p">,</span>
+                       breaks<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+                       labels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Woman&quot;</span><span class="p">,</span> <span class="s">&quot;Man&quot;</span><span class="p">))</span> <span class="o">+</span>
+      scale_shape_discrete<span class="p">(</span>name  <span class="o">=</span><span class="s">&quot;Payer&quot;</span><span class="p">,</span>
+                       breaks<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span> <span class="s">&quot;Male&quot;</span><span class="p">),</span>
+                       labels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Woman&quot;</span><span class="p">,</span> <span class="s">&quot;Man&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/lp1.png" />
+<img alt="" src="Legends&#32;(ggplot2)/lp1-colour.png" />
+<img alt="" src="Legends&#32;(ggplot2)/lp1-colour-shape.png" /></p>
+<h5 id="kinds-of-scales">Kinds of scales</h5>
+<p>There are many kinds of scales. They take the form <code>scale_xxx_yyy</code>. Here are some commonly-used values of <code>xxx</code> and <code>yyy</code>:</p>
+<table>
+<thead>
+<tr>
+<th><strong><em>xxx</em></strong></th>
+<th><strong><em>Description</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>colour</td>
+<td>Color of lines and points</td>
+</tr>
+<tr>
+<td>fill</td>
+<td>Color of area fills (e.g. bar graph)</td>
+</tr>
+<tr>
+<td>linetype</td>
+<td>Solid/dashed/dotted lines</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>Shape of points</td>
+</tr>
+<tr>
+<td>size</td>
+<td>Size of points</td>
+</tr>
+<tr>
+<td>alpha</td>
+<td>Opacity/transparency</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><strong><em>yyy</em></strong></th>
+<th><strong><em>Description</em></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hue</td>
+<td>Equally-spaced colors from the color wheel</td>
+</tr>
+<tr>
+<td>manual</td>
+<td>Manually-specified values (e.g., colors, point shapes, line types)</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>Color gradient</td>
+</tr>
+<tr>
+<td>grey</td>
+<td>Shades of grey</td>
+</tr>
+<tr>
+<td>discrete</td>
+<td>Discrete values (e.g., colors, point shapes, line types, point sizes)</td>
+</tr>
+<tr>
+<td>continuous</td>
+<td>Continuous values (e.g., alpha, colors, point sizes)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="modifying-the-appearance-of-the-legend-title-and-labels">Modifying the appearance of the legend title and labels</h3>
+<div class="codehilite"><pre>bp <span class="o">+</span> opts<span class="p">(</span>legend.title <span class="o">=</span> theme_text<span class="p">(</span>colour<span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> size<span class="o">=</span><span class="m">16</span><span class="p">,</span> face<span class="o">=</span><span class="s">&quot;bold&quot;</span><span class="p">))</span>
+
+<span class="c1"># Adjust the horizontal position of the title</span>
+bp <span class="o">+</span> opts<span class="p">(</span>legend.title <span class="o">=</span> theme_text<span class="p">(</span>colour<span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> size<span class="o">=</span><span class="m">16</span><span class="p">,</span> hjust<span class="o">=-</span><span class="m">.1</span><span class="p">,</span> face<span class="o">=</span><span class="s">&quot;bold&quot;</span><span class="p">))</span>
+
+bp <span class="o">+</span> opts<span class="p">(</span>legend.text <span class="o">=</span> theme_text<span class="p">(</span>colour<span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">16</span><span class="p">,</span> face <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-title1.png" />
+<img alt="" src="Legends&#32;(ggplot2)/bp-title2.png" />
+<img alt="" src="Legends&#32;(ggplot2)/bp-labels.png" /></p>
+<h3 id="modifying-the-legend-box">Modifying the legend box</h3>
+<p>By default, the legend will not have a box around it. To add a box and modify its properties:</p>
+<div class="codehilite"><pre>bp <span class="o">+</span> opts<span class="p">(</span>legend.background <span class="o">=</span> theme_rect<span class="p">())</span>
+bp <span class="o">+</span> opts<span class="p">(</span>legend.background <span class="o">=</span> theme_rect<span class="p">(</span>fill<span class="o">=</span><span class="s">&quot;gray90&quot;</span><span class="p">,</span> size<span class="o">=</span><span class="m">.5</span><span class="p">,</span> linetype<span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-box.png" />
+<img alt="" src="Legends&#32;(ggplot2)/bp-boxfill.png" /></p>
+<h3 id="changing-the-position-of-the-legend">Changing the position of the legend</h3>
+<p>Position legend outside the plotting area (left/right/top/bottom):</p>
+<div class="codehilite"><pre>bp <span class="o">+</span> opts<span class="p">(</span>legend.position<span class="o">=</span><span class="s">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-left.png" /></p>
+<p>It is also possible to position the legend inside the plotting area. Note that the numeric position below is relative to the entire area, including titles and labels, not just the plotting area.</p>
+<div class="codehilite"><pre><span class="c1"># Position legend in graph, from 0,0 (bottom left) to 1,1 (top right)</span>
+bp <span class="o">+</span> opts<span class="p">(</span>legend.position<span class="o">=</span>c<span class="p">(</span><span class="m">.8</span><span class="p">,</span> <span class="m">.35</span><span class="p">))</span>
+
+<span class="c1"># Set the &quot;anchoring point&quot; of the legend (left/right/centre)</span>
+bp <span class="o">+</span> opts<span class="p">(</span>legend.justification<span class="o">=</span><span class="s">&quot;left&quot;</span><span class="p">,</span> legend.position<span class="o">=</span>c<span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
+bp <span class="o">+</span> opts<span class="p">(</span>legend.justification<span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">,</span> legend.position<span class="o">=</span>c<span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/bp-inside.png" />
+<img alt="" src="Legends&#32;(ggplot2)/bp-justifyleft.png" />
+<img alt="" src="Legends&#32;(ggplot2)/bp-justifyright.png" /></p>
+<h3 id="hiding-slashes-in-the-legend">Hiding slashes in the legend</h3>
+<p>If you make bar graphs with an outline (by setting colour="black"), it will draw a slash through the colors in the legend. There is not a built-in way to remove the slashes, but it is possible to cover them up.</p>
+<div class="codehilite"><pre><span class="c1"># No outline</span>
+ggplot<span class="p">(</span>data<span class="o">=</span>PlantGrowth<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>group<span class="p">,</span> fill<span class="o">=</span>group<span class="p">))</span> <span class="o">+</span> geom_bar<span class="p">()</span>
+
+<span class="c1"># Add outline, but slashes appear in legend</span>
+ggplot<span class="p">(</span>data<span class="o">=</span>PlantGrowth<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>group<span class="p">,</span> fill<span class="o">=</span>group<span class="p">))</span> <span class="o">+</span> geom_bar<span class="p">(</span>colour<span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+
+<span class="c1"># A hack to hide the slashes: first graph the bars with no outline and add the legend,</span>
+<span class="c1"># then graph the bars again with outline, but with a blank legend.</span>
+ggplot<span class="p">(</span>data<span class="o">=</span>PlantGrowth<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>group<span class="p">,</span> fill<span class="o">=</span>group<span class="p">))</span> <span class="o">+</span> geom_bar<span class="p">()</span> <span class="o">+</span> geom_bar<span class="p">(</span>colour<span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span> legend<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="" src="Legends&#32;(ggplot2)/barfill.png" />
+<img alt="" src="Legends&#32;(ggplot2)/barfill-outline.png" />
+<img alt="" src="Legends&#32;(ggplot2)/barfill-outline-noslash.png" /></p>
+<h3 id="notes">Notes</h3>
+<p>For further information, see:
+[https://github.com/hadley/ggplot2/wiki/Legend-Attributes]</p>
+        
+        
+        
+        
+        <hr class="clear" />
+      </div> <!-- div#content -->
+      
+      
+      <div id="footer">
+        <p>
+          
+            Cookbook for R —
+          
+          Powered by <a href="http://markdoc.org/">Markdoc</a>.
+          Please report errors to winston@stdout.org.
+        </p>
+      </div>
+      
+    
+    
+    
+    <hr class="clear" />
+  </body>
+</html>
