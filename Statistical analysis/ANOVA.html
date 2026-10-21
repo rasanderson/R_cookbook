@@ -245,7 +245,7 @@ model.tables<span class="p">(</span>aov.after.sex.age<span class="p">,</span> <s
 
 
 <h2 id="anovas-with-within-subjects-variables">ANOVAs with within-subjects variables</h2>
-<p>For ANOVAs with within-subjects variables, the data must be in long format. The data supplied above is in wide format, so we have to convert it first. (See <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">../../Manipulating data/Converting data between wide and long format</a> for more information.)</p>
+<p>For ANOVAs with within-subjects variables, the data must be in long format. The data supplied above is in wide format, so we have to convert it first. (See <a href="Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">../../Manipulating data/Converting data between wide and long format</a> for more information.)</p>
 <p>Also, for ANOVAs with a within-subjects variable, there must be an identifier column. In this case, it is <code>subject</code>. <strong><em>This identifier variable must be a factor.</em></strong> If it is a numeric type, the function will interpret it incorrectly and it won't work properly.</p>
 <div class="codehilite"><pre>library<span class="p">(</span>reshape<span class="p">)</span>
 

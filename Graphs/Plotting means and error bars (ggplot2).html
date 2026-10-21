@@ -113,7 +113,7 @@
 <h2 id="problem">Problem</h2>
 <p>You want to plot means and error bars for a dataset.</p>
 <h2 id="solution">Solution</h2>
-<p>To make graphs with ggplot2, the data must be in a data frame, and in "long" (as opposed to wide) format. If your data needs to be restructured, see <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information.</p>
+<p>To make graphs with ggplot2, the data must be in a data frame, and in "long" (as opposed to wide) format. If your data needs to be restructured, see <a href="Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information.</p>
 <h3 id="sample-data">Sample data</h3>
 <p>The examples below will the <code>ToothGrowth</code> dataset. Note that <code>dose</code> is a numeric column here; in some situations it may be useful to convert it to a factor.</p>
 <div class="codehilite"><pre>df <span class="o">&lt;-</span> ToothGrowth
@@ -128,7 +128,7 @@ library<span class="p">(</span>ggplot2<span class="p">)</span>
 </pre></div>
 
 
-<p>First, it is necessary to summarize the data. This can be done in a number of ways, as described on <a href="http://test.stdout.org/Manipulating&#32;data/Summarizing&#32;data">this page</a>. In this case, we'll use the <code>summarySE()</code> function defined on that page, and also at the <a href="Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2).html#Helper functions">bottom</a> of this page. (The code for the <code>summarySE</code> function must be entered before it is called here).</p>
+<p>First, it is necessary to summarize the data. This can be done in a number of ways, as described on <a href="Manipulating&#32;data/Summarizing&#32;data">this page</a>. In this case, we'll use the <code>summarySE()</code> function defined on that page, and also at the <a href="Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2).html#Helper functions">bottom</a> of this page. (The code for the <code>summarySE</code> function must be entered before it is called here).</p>
 <div class="codehilite"><pre><span class="c1"># summarySE provides the standard deviation, standard error of the mean, and a (default 95%) confidence interval</span>
 dfc <span class="o">&lt;-</span> summarySE<span class="p">(</span>df<span class="p">,</span> measurevar<span class="o">=</span><span class="s">&quot;len&quot;</span><span class="p">,</span> groupvars<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;supp&quot;</span><span class="p">,</span><span class="s">&quot;dose&quot;</span><span class="p">))</span>
 <span class="c1"># supp dose  N   len       sd        se       ci</span>
@@ -263,7 +263,7 @@ dfw<span class="p">$</span>subject <span class="o">&lt;-</span> factor<span clas
 </pre></div>
 
 
-<p>The first step is to convert it to long format. See <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information about the conversion.</p>
+<p>The first step is to convert it to long format. See <a href="Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information about the conversion.</p>
 <div class="codehilite"><pre><span class="c1"># Convert to long format</span>
 library<span class="p">(</span>reshape<span class="p">)</span>
 dfw.long <span class="o">&lt;-</span> melt<span class="p">(</span>dfw<span class="p">,</span>
@@ -431,7 +431,7 @@ ggplot<span class="p">(</span>datac<span class="p">,</span> aes<span class="p">(
 
 <p><img alt="" src="Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2)/within-within-errorbars.png" /></p>
 <h3 id="helper-functions">Helper functions</h3>
-<p>The <code>summarySE</code> function is also defined on <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a>. If you only are working with between-subjects variables, that is the only function you will need in your code. If you have within-subjects variables <strong><em>and</em></strong> want to adjust the error bars so that inter-subject variability is removed as in Loftus and Masson (1994), then the other two functions, <code>normDataWithin</code> and <code>summarySEwithin</code> must also be added to your code; <code>summarySEwithin</code> will then be the function that you call.</p>
+<p>The <code>summarySE</code> function is also defined on <a href="Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a>. If you only are working with between-subjects variables, that is the only function you will need in your code. If you have within-subjects variables <strong><em>and</em></strong> want to adjust the error bars so that inter-subject variability is removed as in Loftus and Masson (1994), then the other two functions, <code>normDataWithin</code> and <code>summarySEwithin</code> must also be added to your code; <code>summarySEwithin</code> will then be the function that you call.</p>
 <div class="codehilite"><pre><span class="c1">## Summarizes data.</span>
 <span class="c1">## Gives count, mean, standard deviation, standard error of the mean, and confidence interval (default 95%).</span>
 <span class="c1">## If there are within-subject variables, calculate adjusted values using method from Morey (2008).</span>

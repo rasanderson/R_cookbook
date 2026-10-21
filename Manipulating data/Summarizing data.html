@@ -202,7 +202,7 @@ cdata <span class="o">&lt;-</span> ddply<span class="p">(</span>dataNA<span clas
 <p>Instead of manually specifying all the values you want and then calculating the standard error, as shown above, this function will handle all of those details. It will do all the things described here:</p>
 <ul>
 <li>Find the mean, standard deviation, and count (N)</li>
-<li>Find the standard error of the mean (<strong><em>again, this may not be what you want if you are collapsing over a within-subject variable.</em></strong>  See <a href="http://test.stdout.org/Graphs/Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2)">../../Graphs/Plotting means and error bars (ggplot2)</a> for information on how to make error bars for graphs with within-subjects variables.)</li>
+<li>Find the standard error of the mean (<strong><em>again, this may not be what you want if you are collapsing over a within-subject variable.</em></strong>  See <a href="Graphs/Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2)">../../Graphs/Plotting means and error bars (ggplot2)</a> for information on how to make error bars for graphs with within-subjects variables.)</li>
 <li>Find a 95% confidence interval (or other value, if desired)</li>
 <li>Rename the columns so that the resulting data frame is easier to work with</li>
 </ul>
@@ -321,7 +321,7 @@ cdata<span class="p">$</span>change.se <span class="o">&lt;-</span> cdata<span c
 </pre></div>
 
 
-<p><strong><em>Note that if you have any within-subjects variables, these standard error values may not be useful for comparing groups.</em></strong> See <a href="http://test.stdout.org/Graphs/Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2)">../../Graphs/Plotting means and error bars (ggplot2)</a> for information on how to make error bars for graphs with within-subjects variables.</p>
+<p><strong><em>Note that if you have any within-subjects variables, these standard error values may not be useful for comparing groups.</em></strong> See <a href="Graphs/Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2)">../../Graphs/Plotting means and error bars (ggplot2)</a> for information on how to make error bars for graphs with within-subjects variables.</p>
 <h4 id="handling-missing-data_1">Handling missing data</h4>
 <p>If there are NA's in the data, you need to pass the flag <code>na.rm=TRUE</code> to the functions. Normally you could pass it to <code>summaryBy()</code> and it would get passed to each of the functions called, but <code>length()</code> does not recognize it and so it won't work. One way around it is to define a new length function that handles the NA's.</p>
 <div class="codehilite"><pre><span class="c1"># New version of length which can handle NA&#39;s: if na.rm==T, don&#39;t count them</span>
@@ -349,7 +349,7 @@ cdataNA <span class="o">&lt;-</span> summaryBy<span class="p">(</span>change ~ s
 <p>Instead of manually specifying all the values you want and then calculating the standard error, as shown above, this function will handle all of those details. It will do all the things described here:</p>
 <ul>
 <li>Find the mean, standard deviation, and count (N)</li>
-<li>Find the standard error of the mean (<strong><em>again, this may not be what you want if you are collapsing over a within-subject variable.</em></strong>  See <a href="http://test.stdout.org/Graphs/Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2)">../../Graphs/Plotting means and error bars (ggplot2)</a> for information on how to make error bars for graphs with within-subjects variables.)</li>
+<li>Find the standard error of the mean (<strong><em>again, this may not be what you want if you are collapsing over a within-subject variable.</em></strong>  See <a href="Graphs/Plotting&#32;means&#32;and&#32;error&#32;bars&#32;(ggplot2)">../../Graphs/Plotting means and error bars (ggplot2)</a> for information on how to make error bars for graphs with within-subjects variables.)</li>
 <li>Find a 95% confidence interval (or other value, if desired)</li>
 <li>Rename the columns so that the resulting data frame is easier to work with</li>
 </ul>

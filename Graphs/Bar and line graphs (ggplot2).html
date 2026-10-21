@@ -119,7 +119,7 @@
 <h2 id="problem">Problem</h2>
 <p>You want to do make basic bar or line graphs.</p>
 <h2 id="solution">Solution</h2>
-<p>To make graphs with ggplot2, the data must be in a data frame, and in "long" (as opposed to wide) format. If your data needs to be restructured, see <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information.</p>
+<p>To make graphs with ggplot2, the data must be in a data frame, and in "long" (as opposed to wide) format. If your data needs to be restructured, see <a href="Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information.</p>
 <h3 id="basic-graphs-with-discrete-x-axis">Basic graphs with discrete x-axis</h3>
 <p>This data will be used for the examples below:</p>
 <div class="codehilite"><pre>df <span class="o">&lt;-</span> data.frame<span class="p">(</span>time <span class="o">=</span> factor<span class="p">(</span>c<span class="p">(</span><span class="s">&quot;Lunch&quot;</span><span class="p">,</span><span class="s">&quot;Dinner&quot;</span><span class="p">),</span> levels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;Lunch&quot;</span><span class="p">,</span><span class="s">&quot;Dinner&quot;</span><span class="p">)),</span>
@@ -171,7 +171,7 @@ ggplot<span class="p">(</span>data<span class="o">=</span>df<span class="p">,</s
 
 
 <p><img alt="" src="Bar&#32;and&#32;line&#32;graphs&#32;(ggplot2)/bar-newcolor-outline-nolegend-narrow.png" /></p>
-<p>See <a href="http://test.stdout.org/Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors.</p>
+<p>See <a href="Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors.</p>
 <h4 id="line-graphs">Line graphs</h4>
 <p>For line graphs, the data points must be grouped so that it knows which points to connect. In this case, it is simple -- all points should be connected, so <code>group=1</code>. When more variables are used and multiple lines are drawn, the grouping for lines is usually done by variable (this is seen in later examples).</p>
 <p>These are the variable mappings used here:</p>
@@ -209,7 +209,7 @@ ggplot<span class="p">(</span>data<span class="o">=</span>df<span class="p">,</s
 
 
 <p><img alt="" src="Bar&#32;and&#32;line&#32;graphs&#32;(ggplot2)/line-point-ylim.png" /></p>
-<p>See <a href="http://test.stdout.org/Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors, and <a href="http://test.stdout.org/Graphs/Shapes&#32;and&#32;line&#32;types">../Shapes and line types</a> for information on shapes and line types.</p>
+<p>See <a href="Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors, and <a href="Graphs/Shapes&#32;and&#32;line&#32;types">../Shapes and line types</a> for information on shapes and line types.</p>
 <h3 id="graphs-with-more-variables">Graphs with more variables</h3>
 <p>This data will be used for the examples below:</p>
 <div class="codehilite"><pre>df1 <span class="o">&lt;-</span> data.frame<span class="p">(</span>sex       <span class="o">=</span> factor<span class="p">(</span>c<span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="s">&quot;Male&quot;</span><span class="p">)),</span>
@@ -255,7 +255,7 @@ ggplot<span class="p">(</span>data<span class="o">=</span>df1<span class="p">,</
 
 
 <p><img alt="" src="Bar&#32;and&#32;line&#32;graphs&#32;(ggplot2)/bar2-swapxy.png" /></p>
-<p>See <a href="http://test.stdout.org/Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors.</p>
+<p>See <a href="Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors.</p>
 <h4 id="line-graphs_1">Line graphs</h4>
 <p>These are the variable mappings used here:</p>
 <ul>
@@ -291,7 +291,7 @@ ggplot<span class="p">(</span>data<span class="o">=</span>df1<span class="p">,</
 
 
 <p><img alt="" src="Bar&#32;and&#32;line&#32;graphs&#32;(ggplot2)/line2-swapxy.png" /></p>
-<p>See <a href="http://test.stdout.org/Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors, and <a href="http://test.stdout.org/Graphs/Shapes&#32;and&#32;line&#32;types">../Shapes and line types</a> for information on shapes and line types.</p>
+<p>See <a href="Graphs/Colors&#32;(ggplot2)">../Colors (ggplot2)</a> for more information on colors, and <a href="Graphs/Shapes&#32;and&#32;line&#32;types">../Shapes and line types</a> for information on shapes and line types.</p>
 <h4 id="finished-examples">Finished examples</h4>
 <p>The finished graphs might look like these:</p>
 <div class="codehilite"><pre><span class="c1"># A bar graph</span>
@@ -322,7 +322,7 @@ ggplot<span class="p">(</span>data<span class="o">=</span>df1<span class="p">,</
 </pre></div>
 
 
-<p>In the line graph, the reason that the legend title, "Sex of payer", must be specified three times is so that there is only one legend. The issue is explained <a href="http://test.stdout.org/Graphs/Legends&#32;(ggplot2)#With_lines_and_points">here</a>.</p>
+<p>In the line graph, the reason that the legend title, "Sex of payer", must be specified three times is so that there is only one legend. The issue is explained <a href="Graphs/Legends&#32;(ggplot2)#With_lines_and_points">here</a>.</p>
 <p><img alt="" src="Bar&#32;and&#32;line&#32;graphs&#32;(ggplot2)/bar2-final.png" />
 <img alt="" src="Bar&#32;and&#32;line&#32;graphs&#32;(ggplot2)/line2-final.png" /></p>
 <h3 id="with-a-numeric-x-axis">With a numeric x-axis</h3>

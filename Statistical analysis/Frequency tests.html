@@ -183,7 +183,7 @@ close<span class="p">(</span>con<span class="p">)</span>
 </pre></div>
 
 
-<p>Instead of a data frame of <strong>cases</strong>, your data might be stored as a data frame of <strong>counts</strong>, or as a contingency table. For the analyses here, your data must be in a contingency table. See <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;between&#32;data&#32;frames&#32;and&#32;contingency&#32;tables">this page</a> for more information.</p>
+<p>Instead of a data frame of <strong>cases</strong>, your data might be stored as a data frame of <strong>counts</strong>, or as a contingency table. For the analyses here, your data must be in a contingency table. See <a href="Manipulating&#32;data/Converting&#32;between&#32;data&#32;frames&#32;and&#32;contingency&#32;tables">this page</a> for more information.</p>
 <h3 id="tests-of-goodness-of-fit-expected-frequency">Tests of goodness-of-fit (expected frequency)</h3>
 <h4 id="chi-square-test">Chi-square test</h4>
 <p>To test whether the two values in the result column (ignoring sex and condition) are equally likely (50%-50%) in the population:</p>
@@ -327,7 +327,7 @@ close<span class="p">(</span>con<span class="p">)</span>
 </pre></div>
 
 
-<p>Note that the data above is entered as a data frame of <strong>counts</strong>, instead of a data frame of <strong>cases</strong> as in previous examples. Instead of using <code>table()</code> to convert it to a contingency table, use <code>xtabs()</code> instead. For more information, see <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;between&#32;data&#32;frames&#32;and&#32;contingency&#32;tables">this page</a>.</p>
+<p>Note that the data above is entered as a data frame of <strong>counts</strong>, instead of a data frame of <strong>cases</strong> as in previous examples. Instead of using <code>table()</code> to convert it to a contingency table, use <code>xtabs()</code> instead. For more information, see <a href="Manipulating&#32;data/Converting&#32;between&#32;data&#32;frames&#32;and&#32;contingency&#32;tables">this page</a>.</p>
 <div class="codehilite"><pre><span class="c1"># Make a 3D contingency table, where the last variable, Location, is the one to control for.</span>
 <span class="c1"># If you use table() for case data, the last variable is also the one to control for.</span>
 ct <span class="o">&lt;-</span> xtabs<span class="p">(</span>Count ~ Allele <span class="o">+</span> Habitat <span class="o">+</span> Location<span class="p">,</span> data<span class="o">=</span>fish<span class="p">)</span>
@@ -471,7 +471,7 @@ mantelhaen.test<span class="p">(</span>ct.6<span class="p">)</span>
 </pre></div>
 
 
-<p>If your data is not already in wide format, it must be converted (see <a href="http://test.stdout.org/Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information):</p>
+<p>If your data is not already in wide format, it must be converted (see <a href="Manipulating&#32;data/Converting&#32;data&#32;between&#32;wide&#32;and&#32;long&#32;format">this page</a> for more information):</p>
 <div class="codehilite"><pre>library<span class="p">(</span>reshape2<span class="p">)</span>
 
 data.wide <span class="o">&lt;-</span> dcast<span class="p">(</span>data<span class="p">,</span> subject ~ time<span class="p">,</span> value_var<span class="o">=</span><span class="s">&quot;result&quot;</span><span class="p">)</span>
